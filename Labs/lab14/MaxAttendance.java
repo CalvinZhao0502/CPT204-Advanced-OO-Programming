@@ -20,32 +20,28 @@ public class MaxAttendance {
     }
     public int maxAttendance() {
         int max=0;
-        int temp=0;
-        while(minPQ2.size()>0){
-            if(minPQ2.size()==1){
-                temp=minPQ2.getMin().getNumStudents();
-                if (temp>max)
-                {
-                    return temp;
-                }
-                else {
-                    return max;
+        int tempMax=0;
+        while(!minPQ2.isEmpty()){
+            tempMax = 0;
+            CourseActivity endActivity=minPQ2.delMin();
+            ArrayList<CourseActivity>addBackList = new ArrayList<>();
+            while(!minPQ1.isEmpty()&&minPQ1.getMin().getDay()==endActivity.getDay()&&minPQ1.getMin().getStartTime()<endActivity.getEndTime()){
+                CourseActivity startActivity = minPQ1.delMin();
+                tempMax += startActivity.getNumStudents();
+                if(startActivity.getEndTime()>endActivity.getEndTime()) {
+                    addBackList.add(startActivity);
                 }
             }
-
-
-            temp = 0;
-            CourseActivity item1=minPQ2.delMin();
-            while(minPQ1.size()>0&&minPQ1.getMin().getDay()*100+minPQ1.getMin().getStartTime()< item1.getDay()*100+item1.getEndTime()){
-                CourseActivity item2 = minPQ1.delMin();
-                temp+=item2.getNumStudents();
+            if(!addBackList.isEmpty()){
+                for (CourseActivity addBackActivity:addBackList) {
+                    minPQ1.add(addBackActivity,addBackActivity.getDay()*100+addBackActivity.getStartTime());
+                }
             }
-            if(temp>max)
-                max=temp;
+            if(tempMax>max)
+                max=tempMax;
         }
         return max;
     }
-
 
 //    public int maxAttendance() {
 //        int temp3=0;
@@ -96,7 +92,40 @@ public class MaxAttendance {
 //        return max;
 //       }
 
+//    public class MaxAttendance {
+//
+//        private ALBinHeap<CourseActivity> minPQ1;
+//        private ALBinHeap<CourseActivity> minPQ2;
+//
+//
+//        // LAB 14 PART B MAX ATTENDANCE
+//
+//        public MaxAttendance(ArrayList<CourseActivity> activities) {
+//            this.minPQ1=new ALBinHeap<CourseActivity>();
+//            this.minPQ2=new ALBinHeap<CourseActivity>();
+//            for(CourseActivity activity:activities){
+//                minPQ1.add(activity, activity.getDay()*100+activity.getStartTime());
+//                minPQ2.add(activity,activity.getDay()*100+activity.getEndTime());
+//            }
+//
+//        }
+//        public int maxAttendance() {
+//            int max=0;
+//            int tempMax=0;
+//            while(!minPQ2.isEmpty()){
+//                tempMax = 0;
+//                CourseActivity endActivity=minPQ2.delMin();
+//                while(!minPQ1.isEmpty()&&minPQ1.getMin().getDay()==endActivity.getDay()&&minPQ1.getMin().getStartTime()<endActivity.getEndTime()){
+//                    CourseActivity startActivity = minPQ1.delMin();
+//                    tempMax+=startActivity.getNumStudents();
+//                }
+//                if(tempMax>max)
+//                    max=tempMax;
+//            }
+//            return max;
+//        }
 
     }
+    
 
 

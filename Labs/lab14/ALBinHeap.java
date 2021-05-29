@@ -6,11 +6,8 @@ import java.util.NoSuchElementException;
  */
 public class ALBinHeap<T> implements ExpMinPQ<T> {
 
-
-
     private final ArrayList<Node> heap;     // store items at indices 1 to n
     private int size;                       // number of items on binary heap
-
 
     /**
      * Represents a value-explicit priority pair.
@@ -33,40 +30,39 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
 
     // INCLUDE ALL YOUR HELPER METHODS
     // IN YOUR LEARNING MALL SUBMISSION !
-    // Return true:i's priority bigger than j
-
-    public T get(int i){
-
-        return (T) heap.get(i);
-    }
-    private boolean greater(int i, int j) {
-        return (heap.get(i).priority-heap.get(j).priority) > 0;
+    public boolean greater(int i,int j){
+        return heap.get(i).priority>heap.get(j).priority;
     }
 
-
-    private void swap(int i, int j) {
+    public void swap(int i, int j){
         Node temp1 =heap.get(i);
         Node temp2=heap.get(j);
         heap.set(i,temp2);
         heap.set(j,temp1);
+
     }
 
-    private void swim(int k) {
-        while (k > 1 && greater(k/2, k)) {
-            swap(k, k/2);
-            k = k/2; }
-    }
-
-    private void sink(int k) {
-        while (2*k <= size) {
-
-          int j = 2*k;
-          if (j < size && greater(j, j+1)) j++;
-          if (!greater(k, j)) break;
-          swap(k, j);
-          k = j;
+    public void swim(int k){
+        while(k>1&&greater(k/2,k)){
+            swap(k,k/2);
+            k=k/2;
         }
     }
+
+    public void sink(int k){
+        while(k*2<=size){
+            int j = 2*k;
+            if(j<size&&greater(j,j+1)){
+                j++;
+            }
+            if(!greater(k,j)){
+                break;
+            }
+            swap(k,j);
+            k = j;
+        }
+    }
+
     /*
      ******************
      Helper methods end
@@ -80,14 +76,13 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
      * Initializes an empty binary heap.
      */
     public ALBinHeap() {
-     heap=new ArrayList<>();
-     size=0;
-     heap.add(null);
-
+        heap = new ArrayList<Node>();
+        heap.add(null);
+        size=0;
     }
-	
-	
-	// LAB 14 PART A.2 GETMIN
+
+
+    // LAB 14 PART A.2 GETMIN
 
     /**
      * Returns an item with a smallest priority on this binary heap.
@@ -96,9 +91,9 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
      */
     @Override
     public T getMin() {
-      if(isEmpty())
-          throw new NoSuchElementException();
-      return heap.get(1).item;
+        if(size==0)
+            throw new NoSuchElementException();
+        return heap.get(1).item;
     }
 
 
@@ -114,17 +109,10 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
     public void add(T item, int priority) {
         if(item==null)
             throw new IllegalArgumentException();
-
-       heap.add(new Node(item,priority));
-       size++;
-//       swap(1, heap.size());
+        heap.add(new Node(item,priority));
+        size++;
         swim(size);
 
-
-    }
-
-    public void emptyList(){
-        heap.clear();
     }
 
 
@@ -137,30 +125,27 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
      */
     @Override
     public T delMin() {
-        if (isEmpty()) {
-            return null;
+        if(size==0){
+            throw new NoSuchElementException();
         }
-        T item=getMin();
-        swap(1,size);
-        size--;
+        T temp = getMin();
+        heap.set(1,new Node(heap.get(size).item,heap.get(size).priority));
+        heap.remove(size--);
         sink(1);
-        heap.set(size+1,null);
-        return item;
-
+        return temp;
     }
-	
+
 
     // DO NOT MODIFY CODE BELOW
     // for testing and visualization
-	
-	/**
+
+    /**
      * Returns true if this binary heap is empty.
      * @return true if this binary heap is empty;
      *         false otherwise
      */
     @Override
     public boolean isEmpty() {
-
         return size == 0;
     }
 
@@ -172,7 +157,7 @@ public class ALBinHeap<T> implements ExpMinPQ<T> {
     public int size() {
         return size;
     }
-		
+
     @SuppressWarnings("unchecked")
     public T[] toArray() {
         T[] result = (T[]) new Object[size() + 1];
