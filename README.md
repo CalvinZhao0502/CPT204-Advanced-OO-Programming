@@ -1,2 +1,2 @@
 # CPT204Labs
-The labs of CPT204:Advanced OO programming
+Learning materials of CPT204:Advanced OO programming
