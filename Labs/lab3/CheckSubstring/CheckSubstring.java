@@ -11,14 +11,25 @@ public class CheckSubstring {
      */
     public static boolean checkSubstring(String input, String subs, int n) {
         // base case
-		if(input.length()<subs.length())
-		   return n<=0;
-		
+        if(input.length()<subs.length())
+          return n<=0;
         // recursive step
-		
         if(input.substring(0,subs.length()).equals(subs))
-           return checkSubstring(input.substring(1),subs,n-1);
+            return checkSubstring(input.substring(1),subs,n-1);
 
-		return checkSubstring(input.substring(1),subs,n);
+        return checkSubstring(input.substring(1),subs,n);
+
+
+
+//        // base case
+//		if(input.length()<subs.length())
+//		   return n<=0;
+//
+//        // recursive step
+//
+//        if(input.substring(0,subs.length()).equals(subs))
+//           return checkSubstring(input.substring(1),subs,n-1);
+//
+//		return checkSubstring(input.substring(1),subs,n);
     }
 }

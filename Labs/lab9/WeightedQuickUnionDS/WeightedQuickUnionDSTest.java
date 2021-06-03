@@ -23,13 +23,13 @@ public class WeightedQuickUnionDSTest {
         WeightedQuickUnionDS ds = new WeightedQuickUnionDS(5);
         ds.validate(10);
     }
-	
-	
-	// add your own Unit Tests and Integration Tests here
-	
-	
-	
-	
-	
-	
+
+
+    // add your own Unit Tests and Integration Tests here
+
+
+
+
+
+
 }

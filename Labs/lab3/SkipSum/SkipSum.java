@@ -18,16 +18,26 @@ public class SkipSum {
     }
 
     private static boolean skipSumHelper(List<Integer> list, int start, int sum) {
-        // base case
-        if (start>=list.size())
+        if(start>=list.size())
             return sum==0;
-		
-		
-        // recursive step
-        if(skipSumHelper(list, start+2,sum- list.get(start)))
+
+        if(skipSumHelper(list,start+1,sum))
             return true;
-        if(skipSumHelper(list, start+1,sum))
+
+        if(skipSumHelper(list,start+2,sum-list.get(start)))
             return true;
-		return false;
+
+        return false;
+//        // base case
+//        if (start>=list.size())
+//            return sum==0;
+//
+//
+//        // recursive step
+//        if(skipSumHelper(list, start+2,sum- list.get(start)))
+//            return true;
+//        if(skipSumHelper(list, start+1,sum))
+//            return true;
+//		return false;
     }
 }

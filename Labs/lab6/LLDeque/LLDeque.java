@@ -43,22 +43,76 @@ public class LLDeque<T> {
 	 * @param other is another LLDeque<T> object.
      */
     public LLDeque(LLDeque<T> other) {
-        if(other==null){ throw new IllegalArgumentException("other is null");}
-        sentinel=new Node(null,null,null);
-        sentinel.prev=sentinel;
-        sentinel.next=sentinel;
+//       if(other==null)
+//           throw new IllegalArgumentException("other is null");
+//
+//       sentinel=new Node(null,null,null);
+//       sentinel.prev=sentinel;
+//       sentinel.next=sentinel;
+//
+//       size=0;
+//
+//       Node p=sentinel;
+//       Node q=other.sentinel;
+//       while(q.next!=null){
+//          p.next=new Node(p,q.next.item,sentinel);
+//          p=p.next;
+//          q=q.next;
+//          size++;
+//
+//       }
+        if(other==null){
+            throw new IllegalArgumentException("Other cannot be null!");
+        }
+        sentinel = new Node(null,null,null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
         size=0;
 
-
-        Node p=sentinel;
-        Node q=other.sentinel;
-        while(q.next!=null){
-            p.next=new Node(p,q.next.item,sentinel);
+        Node p =sentinel;
+        Node otherSentinel = other.sentinel;
+        Node q=otherSentinel;
+        while(q.next!=otherSentinel){
+            p.next=new Node(p, q.next.item,sentinel);
+            sentinel.prev=p.next;
             p=p.next;
             q=q.next;
             size++;
-
         }
+
+
+
+
+
+//        this();
+//        Node p = other.sentinel.next;
+//        while (!p.equals(other.sentinel)) {
+//            this.addLast(p.item);
+//            p = p.next;
+//        }
+
+
+
+
+
+
+
+//        if(other==null){ throw new IllegalArgumentException("other is null");}
+//        sentinel=new Node(null,null,null);
+//        sentinel.prev=sentinel;
+//        sentinel.next=sentinel;
+//        size=0;
+//
+//
+//        Node p=sentinel;
+//        Node q=other.sentinel;
+//        while(q.next!=null){
+//            p.next=new Node(p,q.next.item,sentinel);
+//            p=p.next;
+//            q=q.next;
+//            size++;
+//
+//        }
     }
 
 

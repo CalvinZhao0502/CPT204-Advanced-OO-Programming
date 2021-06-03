@@ -7,19 +7,31 @@ public class ExtractVowel {
      */
     public static String extractVowel(String str) {
 		// call your recursive helper method
-        return extractVowelHelper(str, 0, "");
+        return extractVowelHelper(str, 0);
     }
 
-    private static String extractVowelHelper(String str, int start, String vowels) {
+    private static String extractVowelHelper(String str, int start) {
         // base case
         if(start==str.length())
             return "";
-		
-		
         // recursive step
         if(isVowel(str.charAt(0)))
-		    return str.charAt(0)+extractVowelHelper(str.substring(1),start,vowels+str.charAt(0));
-        return extractVowelHelper(str.substring(1),start,vowels+str.charAt(0));
+            return str.charAt(0)+extractVowelHelper(str.substring(1),start);
+
+        return extractVowelHelper(str.substring(1),start);
+
+
+
+
+//        // base case
+//        if(start==str.length())
+//            return "";
+//
+//
+//        // recursive step
+//        if(isVowel(str.charAt(0)))
+//		    return str.charAt(0)+extractVowelHelper(str.substring(1),start,vowels+str.charAt(0));
+//        return extractVowelHelper(str.substring(1),start,vowels+str.charAt(0));
 
     }
 

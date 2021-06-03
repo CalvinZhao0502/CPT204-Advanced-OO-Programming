@@ -9,7 +9,11 @@ public class ExtractVowelTest {
     }
     
 	// add your own test cases
-	
+    @Test
+    public void testExtractVowels1() {
+        String str = "aeiou";
+        assertEquals("aeiou", ExtractVowel.extractVowel(str));
+    }
 	
 	
 }

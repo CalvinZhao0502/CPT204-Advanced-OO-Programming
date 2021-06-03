@@ -42,10 +42,10 @@ public class LLDeque<T> {
      * Creates an empty deque.
      */
     public LLDeque() {
-		sentinel=new Node(null,null,null);
-		sentinel.prev=sentinel;
-		sentinel.next=sentinel;
-		size=0;
+        sentinel = new Node(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
+        size = 0;
     }
 
 
@@ -56,10 +56,22 @@ public class LLDeque<T> {
      * @param item is a type T object added to the deque.
      */
     public void addFirst(T item) {
-		Node p=new Node(sentinel,item,sentinel.next);
-		sentinel.next.prev=p;
-		sentinel.next=p;
-		size++;
+
+        Node p=new Node(sentinel,item,sentinel.next);
+        sentinel.next=p;
+       sentinel.next.prev=p;
+
+        size++;
+
+
+
+
+
+
+//        Node p=new Node(sentinel,item,sentinel.next);
+//        sentinel.next.prev=p;
+//        sentinel.next=p;
+//        size++;
 		
     }
 
@@ -71,13 +83,23 @@ public class LLDeque<T> {
      * separated by a space, ended with a new line.
      */
     public void printDeque() {
-		Node p=sentinel.next;
-		while(p!=sentinel){
-            System.out.print(p.item+" ");
+       Node p=sentinel.next;
+       while (p!=sentinel){
+           System.out.println(p.item+"");
            p=p.next;
-        }
-		System.out.println();
-		
+       }
+        System.out.println("");
+
+
+
+
+//        Node p=sentinel.next;
+//        while(p!=sentinel){
+//            System.out.print(p.item+" ");
+//            p=p.next;
+//        }
+//        System.out.println();
+
     }
 
 
@@ -91,14 +113,30 @@ public class LLDeque<T> {
      * @return the ith item of the deque, null if it does not exist.
      */
     public T iterGet(int index) {
-		if(size==0||index<0||index>+size){ return null; }
-		Node p=sentinel.next;
-		while(index>0){
-		    p=p.next;
-		    index--;
 
+        if(size<=0||index<0||index>size)
+            return null;
+        Node p=sentinel.next;
+        while(index>0){
+            p=p.next;
+            index--;
         }
-		return p.item;
+        return  p.item;
+
+
+
+
+
+
+//        if (size == 0 || index < 0 || index >= size) {
+//            return null;
+//        }
+//        Node p = sentinel.next;
+//        while (index > 0) {
+//            p = p.next;
+//            index -= 1;
+//        }
+//        return p.item;
     }
 
 
@@ -109,10 +147,19 @@ public class LLDeque<T> {
      * @param item is a type T object added to the deque.
      */
     public void addLast(T item) {
-		  Node p=new Node(sentinel.prev,item,sentinel);
-		  sentinel.prev.next=p;
-		  sentinel.prev=p;
-          size++;
+        Node p=new Node(sentinel.prev,item,sentinel);
+        size++;
+        sentinel.prev.next=p;
+        sentinel.prev=p;
+
+
+
+
+
+//		  Node p=new Node(sentinel.prev,item,sentinel);
+//		  sentinel.prev.next=p;
+//		  sentinel.prev=p;
+//          size++;
         }
 
 
@@ -125,11 +172,16 @@ public class LLDeque<T> {
      * @return the first item of the deque, null if it does not exist.
      */
     public T delFirst() {
-		Node p=sentinel.next;
-		sentinel.next=p.next;
-		p.next.prev=sentinel;
-		
-		return p.item;
+        Node p=sentinel.next;
+        sentinel.next=p.next;
+        p.next.prev=sentinel;
+        size--;
+        return p.item;
+//		Node p=sentinel.next;
+//		sentinel.next=p.next;
+//		p.next.prev=sentinel;
+//
+//		return p.item;
     }
 
 
@@ -141,11 +193,23 @@ public class LLDeque<T> {
      * @return the last item of the deque, null if it does not exist.
      */
     public T delLast() {
-        Node p=sentinel.prev;
-		p.prev.next=sentinel;
-		sentinel.prev=p.prev;
 
-		return p.item;
+        Node p=sentinel.prev;
+        p.prev.next=sentinel;
+        sentinel.prev=p.prev;
+        size--;
+        return p.item;
+
+
+
+
+
+
+//        Node p=sentinel.prev;
+//		p.prev.next=sentinel;
+//		sentinel.prev=p.prev;
+//
+//		return p.item;
     }
 
 
@@ -164,13 +228,23 @@ public class LLDeque<T> {
 
     }
     private T recGetHelper(int i, Node node) {
-        if(node==null||size<0||i>size||i<0){
+
+        if(size<=0||i<0||i>size||node==null)
             return null;
-        }
-        if (i == 0) {
+        if(i==0)
             return node.item;
-        }
-        return recGetHelper(i - 1, node.next);
+
+        return recGetHelper(i-1,node.next);
+
+
+
+//        if(node==null||size<0||i>size||i<0){
+//            return null;
+//        }
+//        if (i == 0) {
+//            return node.item;
+//        }
+//        return recGetHelper(i - 1, node.next);
     }
 
     public static void main(String[] args) {

@@ -16,15 +16,29 @@ public class OddAndTen {
     }
 
     private static boolean oddAndTenHelper(List<Integer> list,int start,int sum1,int sum2) { // add any parameters
+      // base case
+        if(start== list.size())
+            return (sum1%2==1&&sum2%10==0)||
+                    (sum2%2==1&&sum1%10==0);
 
-        // base case
-        if(start==list.size()) {
-            return (sum1 % 10 == 0 && sum2 % 2 == 1) || (sum1 % 2 == 1 && sum2 % 10 == 0);
-        }
-		
         // recursive step
-        return oddAndTenHelper(list,start+1,sum1,sum2+list.get(start))||
-                oddAndTenHelper(list,start+1,sum1+list.get(start),sum2);
+
+        return oddAndTenHelper(list,start+1,sum1+ list.get(start),sum2)||
+                oddAndTenHelper(list,start+1,sum2+ list.get(start),sum1);
+
+
+
+
+
+
+//        // base case
+//        if(start==list.size()) {
+//            return (sum1 % 10 == 0 && sum2 % 2 == 1) || (sum1 % 2 == 1 && sum2 % 10 == 0);
+//        }
+//
+//        // recursive step
+//        return oddAndTenHelper(list,start+1,sum1,sum2+list.get(start))||
+//                oddAndTenHelper(list,start+1,sum1+list.get(start),sum2);
 		
 
     }

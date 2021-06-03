@@ -14,8 +14,8 @@ public class CountRunsTest {
     }
     @Test
     public void testCase2() {
-        List<Integer> list = Arrays.asList(1, 1, 2, 3, 4, 5, 5);
-        assertEquals(2, CountRuns.countRuns(list));
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        assertEquals(0, CountRuns.countRuns(list));
     }
     @Test
     public void testCase3() {

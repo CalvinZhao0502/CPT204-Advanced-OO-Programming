@@ -8,15 +8,33 @@ public class DelDuplicate {
      */
     public static String delDuplicate(String input) {
         // base case
-
-        if(input.length()<=1)
+        if(input.length()==1||input.length()==0)
             return input;
-		
+
+        if(input.charAt(0)==input.charAt(1))
+            return delDuplicate(input.substring(1));
+
+        return  input.charAt(0)+delDuplicate(input.substring(1));
+
+
 
         // recursive step
-        if(input.charAt(0)==input.charAt(1))
-		   return delDuplicate(input.substring(1));
-        return input.charAt(0)+delDuplicate(input.substring(1));
+
+
+
+
+
+
+//        // base case
+//
+//        if(input.length()<=1)
+//            return input;
+//
+//
+//        // recursive step
+//        if(input.charAt(0)==input.charAt(1))
+//		   return delDuplicate(input.substring(1));
+//        return input.charAt(0)+delDuplicate(input.substring(1));
 
     }
 }

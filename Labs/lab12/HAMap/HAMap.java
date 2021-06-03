@@ -17,6 +17,7 @@ public class HAMap<K, V> implements Iterable<K> {
         Entry(K k, V v) {
             key = k;
             value = v;
+
         }
     }
 
@@ -60,8 +61,14 @@ public class HAMap<K, V> implements Iterable<K> {
     /*
      ***** HELPER METHODS START *****
      */
-
-    
+//     @Override
+//     public String toString(){
+//       String answer="{";
+//       for(Entry e:buckets )
+//
+//         return null;
+//     }
+//
 	// INCLUDE your helper methods in EACH of your submissions that use them
 	private int reduce(K key,int capacity ){
 	    return Math.floorMod(key.hashCode(),capacity);
@@ -94,14 +101,27 @@ public class HAMap<K, V> implements Iterable<K> {
     // LAB EXERCISE 12.2 CONSTRUCTORS
 
     public HAMap(int initialCapacity, double loadFactor) {
-		buckets=new ArrayList<>();
+        buckets=new ArrayList<>();
         for (int i = 0; i < initialCapacity; i++) {
             buckets.add(new ArrayList<>());
         }
-		keySet=new HashSet<>();
+        keySet=new HashSet<>();
         numBuckets=initialCapacity;
-		numEntries=0;
-		this.loadFactor=loadFactor;
+        numEntries=0;
+        this.loadFactor=loadFactor;
+
+
+
+
+
+//		buckets=new ArrayList<>();
+//        for (int i = 0; i < initialCapacity; i++) {
+//            buckets.add(new ArrayList<>());
+//        }
+//		keySet=new HashSet<>();
+//        numBuckets=initialCapacity;
+//		numEntries=0;
+//		this.loadFactor=loadFactor;
     }
 
     public HAMap() {
@@ -124,11 +144,21 @@ public class HAMap<K, V> implements Iterable<K> {
      */
     public void clear() {
         buckets=new ArrayList<>();
-        for (int i = 0; i < numBuckets; i++) {
+        for (int i = 0; i <numBuckets; i++) {
             buckets.add(new ArrayList<>());
         }
         keySet=new HashSet<>();
         numEntries=0;
+
+
+
+
+//        buckets=new ArrayList<>();
+//        for (int i = 0; i < numBuckets; i++) {
+//            buckets.add(new ArrayList<>());
+//        }
+//        keySet=new HashSet<>();
+//        numEntries=0;
 		
 		
     }
@@ -141,9 +171,8 @@ public class HAMap<K, V> implements Iterable<K> {
      * @return true iff this map contains an entry with the specified key
      */
     public boolean containsKey(K key) {
-		
-		
-		return keySet.contains(key);
+
+        return keySet.contains(key);
     }
 
     /**
@@ -151,9 +180,9 @@ public class HAMap<K, V> implements Iterable<K> {
      */
     @Override
     public Iterator<K> iterator() {
-		
-		
-		return keySet.iterator();
+
+        return keySet.iterator();
+
     }
 
 
@@ -198,7 +227,7 @@ public class HAMap<K, V> implements Iterable<K> {
         for(Entry e :items){
             if(e.key.equals(key)){
                 e.value = value;
-                return;
+                return;   // 相当于break
             }
         }
         items.add(new Entry(key,value));
@@ -220,13 +249,12 @@ public class HAMap<K, V> implements Iterable<K> {
      */
     public V remove(K key, V value) {
         if (key == null || !keySet.contains(key))
-            return null;
+              return null;
         int index = reduce(key, buckets.size());
         ArrayList<Entry> items = buckets.get(index);
         for (Entry e : items) {
             if (e.key.equals(key)) {
                 if (e.value.equals(value)) {
-
                     items.remove(e);
                     keySet.remove(key);
                     numEntries--;

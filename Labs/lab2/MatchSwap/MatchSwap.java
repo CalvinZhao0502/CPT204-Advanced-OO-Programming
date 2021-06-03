@@ -88,30 +88,44 @@ public class MatchSwap {
         }
         System.out.println(newList);
         return newList;*/
-        Map<Integer, String> map = new HashMap<>(); //Set up a new map to store the strings and their status
-        int i = 0;
-        for (String word : list) {
-            map.put(i++, word);
-            //System.out.println(map);
-        }
-        //System.out.println(map);
-        for (int a = 1; a <= list.size() - 1; a++) {
-            for (int b = 0; b <= a -1; b++) {
-                if (list.get(a).charAt(0) == list.get(b).charAt(0)) { //The condition that the two strings have the same first letter
-                    if ( (map.get(a).charAt(0) == map.get(b).charAt(0))) {
-                        String a1 = list.get(a);
-                        String a2 = list.get(b);
-                        list.set(a, a2);
-                        list.set(b, a1);
-                        map.put(a, "*");
-                        map.put(b, "/");
-                        //System.out.println(map);
-                    }
-                }
+        Map<String, Integer> map = new HashMap<>(); //Set up a new map to store the strings and their status
+        for(int i=0;i<list.size();i++){
+            String key=list.get(i).substring(0,1);
+            if(map.containsKey(key)){
+               int match=map.get(key);
+               String temp=list.get(match);
+               list.set(match, list.get(i));
+               list.set(i,temp);
+               map.remove(key);
+            }
+            else{
+              map.put(key,i);
             }
         }
-        //System.out.println(list);
         return list;
+//        int i = 0;
+//        for (String word : list) {
+//            map.put(i++, word);
+//            //System.out.println(map);
+//        }
+//        //System.out.println(map);
+//        for (int a = 1; a <= list.size() - 1; a++) {
+//            for (int b = 0; b <= a -1; b++) {
+//                if (list.get(a).charAt(0) == list.get(b).charAt(0)) { //The condition that the two strings have the same first letter
+//                    if ( (map.get(a).charAt(0) == map.get(b).charAt(0))) {
+//                        String a1 = list.get(a);
+//                        String a2 = list.get(b);
+//                        list.set(a, a2);
+//                        list.set(b, a1);
+//                        map.put(a, "*");
+//                        map.put(b, "/");
+//                        //System.out.println(map);
+//                    }
+//                }
+//            }
+//        }
+//        //System.out.println(list);
+//        return list;
     }
 
     public static void main(String[] args){

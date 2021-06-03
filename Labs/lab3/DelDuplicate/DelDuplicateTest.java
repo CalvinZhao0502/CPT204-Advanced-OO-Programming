@@ -13,6 +13,9 @@ public class DelDuplicateTest {
         assertEquals("a", DelDuplicate.delDuplicate("aaaaa"));
     }
 
-
+    @Test
+    public void test3() {
+        assertEquals("abcde", DelDuplicate.delDuplicate("abcdeeeeeeeee"));
+    }
 }
 

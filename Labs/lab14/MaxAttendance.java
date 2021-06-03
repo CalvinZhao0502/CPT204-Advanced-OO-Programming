@@ -21,9 +21,7 @@ public class MaxAttendance {
         }
 
     }
-
-    public int maxAttendance() {
-//        int currentAttendance = 0;
+    //        int currentAttendance = 0;
 //        int maxAttendance = 0;
 //        while(!minPQ1.isEmpty()){
 //            if (getStart()<getEnd()){
@@ -39,6 +37,42 @@ public class MaxAttendance {
 //        }
 //
 //        return maxAttendance;
+//    public int maxAttendance() {
+//        int max = 0;
+//        int count = 0;
+//        while (!minPQ2.isEmpty()) {
+//            CourseActivity del = minPQ2.delMin();
+//            int Etime = del.getEndTime() + del.getDay() * 24;
+//            while (!minPQ1.isEmpty()) {
+//                int Stime = minPQ1.getMin().getStartTime() + minPQ1.getMin().getDay() * 24;
+//                if (Stime < Etime) {
+//                    CourseActivity tempDel = minPQ1.delMin();
+//                    //System.out.println("Num: "+tempDel.getNumStudents());
+//                    count += tempDel.getNumStudents();
+//                    //System.out.println(count);
+//                }
+//                else {
+//                    if (count > max) {
+//                        max = count;
+//                    }
+//                    count -= del.getNumStudents();
+//                    //System.out.println(count);
+//                    break;
+//                }
+//                //System.out.println("Test");
+//            }
+//
+//            if (minPQ1.isEmpty()) {
+//                if (max < count) {
+//                    max = count;
+//                }
+//                return max;
+//            }
+//        }
+//        return max;
+//    }
+    public int maxAttendance() {
+
         int current=0;
         int max=0;
         while(!minPQ1.isEmpty()){

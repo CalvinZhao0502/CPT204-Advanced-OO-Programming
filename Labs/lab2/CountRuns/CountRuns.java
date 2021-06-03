@@ -100,7 +100,6 @@ public class CountRuns {
         System.out.println(list1);
         System.out.println(list2);*/
         int runs = 0;
-       
         boolean isRun = false;
         for(int i = 0;i<list.size()-1;i++){
             while(i<list.size()-1&&list.get(i)==list.get(i+1)){

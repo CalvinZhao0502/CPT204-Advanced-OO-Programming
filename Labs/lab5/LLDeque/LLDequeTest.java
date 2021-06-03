@@ -13,14 +13,14 @@ public class LLDequeTest {
         assertEquals("a", deque.iterGet(0));
         assertEquals("b", deque.iterGet(1));
 
-       // assertEquals("a", deque.delFirst());
+        assertEquals("a", deque.delFirst());
         assertEquals("b", deque.iterGet(0));
     }
-	
-	//	add more test cases
-	
-	
-	
+
+    //	add more test cases
+
+
+
 
     @Test
     public void testASSIGNMENT() {
@@ -28,15 +28,15 @@ public class LLDequeTest {
         deque.addLast("a");
         deque.addLast("b");
         deque.addLast("c");
-        assertEquals("a", deque.recGet(2));
+        assertEquals("c", deque.recGet(2));
         assertEquals("a", deque.delFirst());
         assertEquals("c", deque.delLast());
         assertEquals("b", deque.recGet(0));
     }
-	
-	//	add more test cases
-	
-	
-	
-	
+
+    //	add more test cases
+
+
+
+
 }

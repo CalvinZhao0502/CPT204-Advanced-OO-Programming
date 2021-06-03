@@ -9,15 +9,27 @@ public class CountBabaMama {
      * @return the number of occurrences.
      */
     public static int countBabaMama(String input) {
-        // base case
-		if(input.length()<4)
-		    return 0;
-		
-		
-        // recursive step
+        if(input.length()<4)
+            return 0;
+
         if(input.substring(0,4).equals("baba")||input.substring(0,4).equals("mama"))
-		   return 1+countBabaMama(input.substring(1));
+            return 1+countBabaMama(input.substring(1));
+
         return countBabaMama(input.substring(1));
+
+
+
+
+
+//        // base case
+//		if(input.length()<4)
+//		    return 0;
+//
+//
+//        // recursive step
+//        if(input.substring(0,4).equals("baba")||input.substring(0,4).equals("mama"))
+//		   return 1+countBabaMama(input.substring(1));
+//        return countBabaMama(input.substring(1));
 
     }
 

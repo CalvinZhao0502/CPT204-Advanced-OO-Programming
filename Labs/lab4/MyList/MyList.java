@@ -15,12 +15,18 @@ public class MyList {
      * @param list is a MyList object.
      */
     public static void iterSquareMutList(MyList list) {
+        while(list!=null){
+            list.value=(list.value)*(list.value);
+            list=list.next;
+        }
 
-       while(list!=null){
-           list.value=list.value*list.value;
-           list=list.next;
 
-       }
+
+//       while(list!=null){
+//           list.value=list.value*list.value;
+//           list=list.next;
+//
+//       }
 
 
     }
@@ -34,21 +40,38 @@ public class MyList {
      */
     public static void recSquareMutList(MyList list) {
 
-        // base case
-		if(list==null){
-		    //do nothing
-        }
-		else if(list.next==null){
-		    list.value=list.value*list.value;
-        }
-		
-        // recursive step
-		else{
-            list.value=list.value*list.value;
-            recSquareMutList(list.next);
-        }
-		
-		
+    // base case
+    // recursive step
+    if(list==null){
+
+    }
+
+    else if(list.next==null){
+        list.value=(list.value)*(list.value);
+    }
+   else{
+        list.value=(list.value)*(list.value);
+        recSquareMutList(list.next);
+
+    }
+
+
+
+//        // base case
+//		if(list==null){
+//		    //do nothing
+//        }
+//		else if(list.next==null){
+//		    list.value=list.value*list.value;
+//        }
+//
+//        // recursive step
+//		else{
+//            list.value=list.value*list.value;
+//            recSquareMutList(list.next);
+//        }
+//
+//
     }
 
 
@@ -60,6 +83,20 @@ public class MyList {
      * @return another MyList with all of input MyList's element squared.
      */
     public static MyList iterSquareList(MyList list) {
+//        if(list==null)
+//            return null;
+//        MyList newList=new MyList((list.value)*(list.value),null );
+//        MyList p=newList;
+//        list=list.next;
+//
+//        while(list.next!=null){
+//           p.next=new MyList((list.value)*(list.value),null);
+//
+//           list=list.next;
+//            p=p.next;
+//
+//        }
+//        return newList;
 		if (list==null){
 		    return null;
         }
@@ -87,13 +124,20 @@ public class MyList {
      */
     public static MyList recSquareList(MyList list) {
 
-        // base case
-		if(list==null){
-		    return null;
-        }
+        //base case
+        if(list==null)
+            return null;
+        //recursive step
+        return new MyList(list.value*list.value,recSquareList(list.next));
 
-        // recursive step
-		return new MyList(list.value*list.value,recSquareList(list.next));
+
+//        // base case
+//		if(list==null){
+//		    return null;
+//        }
+//
+//        // recursive step
+//		return new MyList(list.value*list.value,recSquareList(list.next));
 
 		
 		
@@ -202,8 +246,6 @@ public class MyList {
         if (listA != null && listB == null){
             return listA;
         }
-
-
         MyList result,p1,p2;
         result = new MyList(listA.get(0),null );
         int i;
@@ -228,8 +270,7 @@ public class MyList {
      */
     public static MyList recCatList(MyList listA, MyList listB) {
         // base case
-        //1 2|4 5
-
+        // 1 2|4 5
         if (listA == null && listB ==null){
             return null;
         }
